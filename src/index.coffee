@@ -67,6 +67,8 @@ Pressable = React.createClass
       onMouseLeave: combineHandlers @handleMouseLeave, @props.onMouseLeave
 
       # Don't pass along the press event handlers
+      component: null
+      componentProps: null
       onPress: null
       onRelease: null
       onReleaseOutside: null
