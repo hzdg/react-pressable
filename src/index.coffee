@@ -6,6 +6,7 @@ merge = require 'react/lib/merge'
 eventlistener = require 'eventlistener'
 
 {PropTypes} = React
+{div} = React.DOM
 
 
 # Create a pressable version of another component class.
@@ -43,6 +44,9 @@ Pressable = React.createClass
     onRelease: PropTypes.func
     onReleaseOutside: PropTypes.func
     onReleaseInside: PropTypes.func
+
+  getDefaultProps: ->
+    component: div
 
   getInitialState: ->
     isPressed: false
