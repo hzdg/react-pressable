@@ -1,5 +1,5 @@
-# react-pressables
-# =================
+# react-pressable
+# ===============
 
 React = require 'react'
 merge = require 'react/lib/merge'

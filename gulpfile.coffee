@@ -30,7 +30,7 @@ gulp.task 'build:browser', ['build:node'], ->
     .pipe browserify
       standalone: 'controlfacades'
       transform: ['browserify-shim']
-    .pipe rename('react-pressables.js')
+    .pipe rename('react-pressable.js')
     .pipe gulp.dest('./standalone/')
 
 gulp.task 'build:tests', ->

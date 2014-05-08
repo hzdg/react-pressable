@@ -2,6 +2,6 @@
 {span} = React.DOM
 
 
-describe 'react-pressables', ->
+describe 'react-pressable', ->
   it 'should pass a test', ->
     assert true

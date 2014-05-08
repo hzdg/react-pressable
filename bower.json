@@ -1,11 +1,11 @@
 {
-  "name": "react-pressables",
+  "name": "react-pressable",
   "version": "0.0.0",
   "authors": [
     "Matthew Dapena-Tretter <m@tthewwithanm.com>"
   ],
   "description": "Add onPress, onRelease, onReleaseInside, and onReleaseOutside events to a component",
-  "main": "./standalone/react-pressables.js",
+  "main": "./standalone/react-pressable.js",
   "keywords": [
     "react-component",
     "react",
@@ -16,7 +16,7 @@
     "onReleaseOutside"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/hzdg/react-pressables",
+  "homepage": "https://github.com/hzdg/react-pressable",
   "ignore": [
     "**/.*",
     "node_modules",
