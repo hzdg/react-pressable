@@ -87,7 +87,6 @@ Pressable = React.createClass
     @setState isPressed: false
 
   handleDocumentMouseUp: ->
-    # console.log 'document mouse up', @state.isInside
     # Remove the listener
     eventlistener.remove document, 'mouseup', @handleDocumentMouseUp
 
