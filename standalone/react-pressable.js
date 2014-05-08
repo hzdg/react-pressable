@@ -115,6 +115,10 @@ Pressable = React.createClass({
     });
   },
   handleMouseDown: function() {
+    var _base;
+    if (typeof (_base = this.props).onPress === "function") {
+      _base.onPress();
+    }
     eventlistener.add(document, 'mouseup', this.handleDocumentMouseUp);
     return this.setState({
       isInside: true,
