@@ -6,7 +6,9 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "eventlistener": "0.0.1"
+  },
   "devDependencies": {
     "coffee-script": "~1.7.1",
     "browserify": "~3.46.0",
@@ -48,7 +50,6 @@
   },
   "browserify-shim": {
     "react": "global:React",
-    "react/lib/merge": "global:React.addons.merge",
-    "react/lib/LinkedStateMixin": "global:React.addons.LinkedStateMixin"
+    "react/lib/merge": "global:React.addons.merge"
   }
 }
