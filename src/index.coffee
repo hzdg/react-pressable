@@ -17,7 +17,7 @@ createFrom = (componentClass) ->
     else 'Component'
   React.createClass
     displayName: "Pressable#{ wrappedDisplayName }"
-    render: -> @transferPropsTo (Pressable component: componentClass)
+    render: -> @transferPropsTo (Pressable component: componentClass, @props.children)
 
 combineHandlers = (handlers...) ->
   handlers = (handler for handler in handlers when handler) # Filter out nulls
