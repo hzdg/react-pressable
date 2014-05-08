@@ -1,0 +1,54 @@
+{
+  "name": "react-pressables",
+  "version": "0.0.0",
+  "description": "Add onPress, onRelease, onReleaseInside, and onReleaseOutside events to a component",
+  "main": "./lib/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "coffee-script": "~1.7.1",
+    "browserify": "~3.46.0",
+    "browserify-shim": "~3.4.1",
+    "gulp": "~3.6.2",
+    "gulp-bump": "~0.1.8",
+    "gulp-coffee": "~1.4.2",
+    "gulp-util": "~2.2.14",
+    "gulp-browserify": "~0.5.0",
+    "gulp-connect": "~2.0.5",
+    "gulp-rename": "~1.2.0",
+    "envify": "~1.2.1",
+    "react": "~0.10.0"
+  },
+  "peerDependencies": {
+    "react": "*"
+  },
+  "scripts": {
+    "prepublish": "gulp build",
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hzdg/react-pressables.git"
+  },
+  "keywords": [
+    "react-component",
+    "react",
+    "events",
+    "onPress",
+    "onRelease",
+    "onReleaseInside",
+    "onReleaseOutside"
+  ],
+  "author": "Matthew Dapena-Tretter <m@tthewwithanm.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hzdg/react-pressables/issues"
+  },
+  "browserify-shim": {
+    "react": "global:React",
+    "react/lib/merge": "global:React.addons.merge",
+    "react/lib/LinkedStateMixin": "global:React.addons.LinkedStateMixin"
+  }
+}
