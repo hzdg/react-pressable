@@ -78,6 +78,8 @@ Pressable = React.createClass
   handleMouseLeave: -> @setState isInside: false
 
   handleMouseDown: ->
+    @props.onPress?()
+
     # Listen for a mouse up somewhere else in case the user presses then moves.
     eventlistener.add document, 'mouseup', @handleDocumentMouseUp
 
