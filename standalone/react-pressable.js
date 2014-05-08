@@ -21,7 +21,7 @@ createFrom = function(componentClass) {
     render: function() {
       return this.transferPropsTo(Pressable({
         component: componentClass
-      }));
+      }, this.props.children));
     }
   });
 };
