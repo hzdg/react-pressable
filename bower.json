@@ -4,7 +4,7 @@
   "authors": [
     "Matthew Dapena-Tretter <m@tthewwithanm.com>"
   ],
-  "description": "Add onPress, onRelease, onReleaseInside, and onReleaseOutside events to a component",
+  "description": "Add onRelease, onReleaseInside, onReleaseOutside, and onPress events to a component",
   "main": "./standalone/react-pressable.js",
   "keywords": [
     "react-component",

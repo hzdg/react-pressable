@@ -1,7 +1,7 @@
 {
   "name": "react-pressable",
   "version": "0.0.0",
-  "description": "Add onPress, onRelease, onReleaseInside, and onReleaseOutside events to a component",
+  "description": "Add onRelease, onReleaseInside, onReleaseOutside, and onPress events to a component",
   "main": "./lib/index.js",
   "directories": {
     "test": "test"
