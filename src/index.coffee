@@ -52,7 +52,7 @@ Pressable = React.createClass
     isPressed: false
     isInside: false # This will only be accurate while the component is pressed; there's no reason to keep track otherwise.
 
-  render: -> @props.component @getProps()
+  render: -> @props.component @getProps(), @props.children
 
   getProps: ->
     usesPressEvents = @props.onPress or @props.onRelease or @props.onReleaseOutside or @props.onReleaseInside
