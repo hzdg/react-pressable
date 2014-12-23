@@ -50,7 +50,6 @@
     "url": "https://github.com/hzdg/react-pressable/issues"
   },
   "browserify-shim": {
-    "react": "global:React",
-    "react/lib/merge": "global:React.addons.merge"
+    "react": "global:React"
   }
 }
