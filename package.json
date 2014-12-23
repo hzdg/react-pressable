@@ -7,7 +7,8 @@
     "test": "test"
   },
   "dependencies": {
-    "eventlistener": "0.0.1"
+    "eventlistener": "0.0.1",
+    "xtend": "~4.0.0"
   },
   "devDependencies": {
     "coffee-script": "~1.7.1",

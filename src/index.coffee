@@ -2,7 +2,7 @@
 # ===============
 
 React = require 'react'
-merge = require 'react/lib/merge'
+extend = require 'xtend'
 eventlistener = require 'eventlistener'
 
 {PropTypes} = React
@@ -60,7 +60,7 @@ Pressable = React.createClass
     # If no special events are being used, don't add the overhead of listening.
     return @props unless usesPressEvents
 
-    merge @props,
+    extend @props,
       onMouseDown: combineHandlers @handleMouseDown, @props.onMouseDown
       onMouseUp: combineHandlers @handleMouseUp, @props.onMouseUp
       onMouseEnter: combineHandlers @handleMouseEnter, @props.onMouseEnter
