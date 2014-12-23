@@ -51,9 +51,9 @@ Pressable = React.createClass
   getDefaultProps: ->
     component: div
 
-  getInitialState: ->
-    isPressed: false
-    isInside: false # This will only be accurate while the component is pressed; there's no reason to keep track otherwise.
+  componentWillMount: ->
+    @_isPressed = false
+    @_isInside = false # This will only be accurate while the component is pressed; there's no reason to keep track otherwise.
 
   render: -> @props.component @getProps(), @props.children
 
@@ -77,8 +77,8 @@ Pressable = React.createClass
       onReleaseOutside: null
       onReleaseInside: null
 
-  handleMouseEnter: -> @setState isInside: true
-  handleMouseLeave: -> @setState isInside: false
+  handleMouseEnter: -> @_isInside = true; return
+  handleMouseLeave: -> @_isInside = false; return
 
   handleMouseDown: ->
     @props.onPress?()
@@ -86,28 +86,31 @@ Pressable = React.createClass
     # Listen for a mouse up somewhere else in case the user presses then moves.
     eventlistener.add document, 'mouseup', @handleDocumentMouseUp
 
-    @setState
-      isInside: true
-      isPressed: true
+    @_isInside = true
+    @_isPressed = true
+    return
+
   handleMouseUp: ->
     # Call the release event handlers.
-    if @state.isPressed
+    if @_isPressed
       @props.onRelease?()
       @props.onReleaseInside?()
 
-    @setState isPressed: false
+    @_isPressed = false
+    return
 
   handleDocumentMouseUp: ->
     # Remove the listener
     eventlistener.remove document, 'mouseup', @handleDocumentMouseUp
 
-    @setState isPressed: false
+    @_isPressed = false
 
     # If the mouse isn't inside the object, we need to trigger the release and
     # releaseOutside events.
-    unless @state.isInside
+    unless @_isInside
       @props.onRelease?()
       @props.onReleaseOutside?()
+    return
 
 
 module.exports = Pressable
