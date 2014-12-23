@@ -7,10 +7,11 @@ eventlistener = require 'eventlistener'
 
 {PropTypes} = React
 {div} = React.DOM
-
+id = (x) -> x
 
 # Create a pressable version of another component class.
 createFrom = (componentClass) ->
+  PressableFactory = (React.createFactory or id) Pressable
   dn = componentClass.type.displayName
   wrappedDisplayName =
     if dn then "#{ dn[...1].toUpperCase() }#{ dn[1...] }"
@@ -19,7 +20,7 @@ createFrom = (componentClass) ->
     displayName: "Pressable#{ wrappedDisplayName }"
     render: ->
       newProps = extend @props, component: componentClass
-      (Pressable newProps, @props.children)
+      (PressableFactory newProps, @props.children)
 
 combineHandlers = (handlers...) ->
   handlers = (handler for handler in handlers when handler) # Filter out nulls
