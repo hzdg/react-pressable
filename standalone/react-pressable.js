@@ -1,10 +1,10 @@
 !function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.controlfacades=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
-var Pressable, PropTypes, React, combineHandlers, createFrom, div, eventlistener, merge,
+var Pressable, PropTypes, React, combineHandlers, createFrom, div, eventlistener, extend, id,
   __slice = [].slice;
 
 React = (window.React);
 
-merge = (window.React.addons.merge);
+extend = _dereq_('xtend');
 
 eventlistener = _dereq_('eventlistener');
 
@@ -12,16 +12,23 @@ PropTypes = React.PropTypes;
 
 div = React.DOM.div;
 
+id = function(x) {
+  return x;
+};
+
 createFrom = function(componentClass) {
-  var dn, wrappedDisplayName;
+  var PressableFactory, dn, wrappedDisplayName;
+  PressableFactory = (React.createFactory || id)(Pressable);
   dn = componentClass.type.displayName;
   wrappedDisplayName = dn ? "" + (dn.slice(0, 1).toUpperCase()) + dn.slice(1) : 'Component';
   return React.createClass({
     displayName: "Pressable" + wrappedDisplayName,
     render: function() {
-      return this.transferPropsTo(Pressable({
+      var newProps;
+      newProps = extend(this.props, {
         component: componentClass
-      }, this.props.children));
+      });
+      return PressableFactory(newProps, this.props.children);
     }
   });
 };
@@ -76,11 +83,9 @@ Pressable = React.createClass({
       component: div
     };
   },
-  getInitialState: function() {
-    return {
-      isPressed: false,
-      isInside: false
-    };
+  componentWillMount: function() {
+    this._isPressed = false;
+    return this._isInside = false;
   },
   render: function() {
     return this.props.component(this.getProps(), this.props.children);
@@ -91,7 +96,7 @@ Pressable = React.createClass({
     if (!usesPressEvents) {
       return this.props;
     }
-    return merge(this.props, {
+    return extend(this.props, {
       onMouseDown: combineHandlers(this.handleMouseDown, this.props.onMouseDown),
       onMouseUp: combineHandlers(this.handleMouseUp, this.props.onMouseUp),
       onMouseEnter: combineHandlers(this.handleMouseEnter, this.props.onMouseEnter),
@@ -105,14 +110,10 @@ Pressable = React.createClass({
     });
   },
   handleMouseEnter: function() {
-    return this.setState({
-      isInside: true
-    });
+    this._isInside = true;
   },
   handleMouseLeave: function() {
-    return this.setState({
-      isInside: false
-    });
+    this._isInside = false;
   },
   handleMouseDown: function() {
     var _base;
@@ -120,14 +121,12 @@ Pressable = React.createClass({
       _base.onPress();
     }
     eventlistener.add(document, 'mouseup', this.handleDocumentMouseUp);
-    return this.setState({
-      isInside: true,
-      isPressed: true
-    });
+    this._isInside = true;
+    this._isPressed = true;
   },
   handleMouseUp: function() {
     var _base, _base1;
-    if (this.state.isPressed) {
+    if (this._isPressed) {
       if (typeof (_base = this.props).onRelease === "function") {
         _base.onRelease();
       }
@@ -135,28 +134,26 @@ Pressable = React.createClass({
         _base1.onReleaseInside();
       }
     }
-    return this.setState({
-      isPressed: false
-    });
+    this._isPressed = false;
   },
   handleDocumentMouseUp: function() {
     var _base, _base1;
     eventlistener.remove(document, 'mouseup', this.handleDocumentMouseUp);
-    this.setState({
-      isPressed: false
-    });
-    if (!this.state.isInside) {
+    this._isPressed = false;
+    if (!this._isInside) {
       if (typeof (_base = this.props).onRelease === "function") {
         _base.onRelease();
       }
-      return typeof (_base1 = this.props).onReleaseOutside === "function" ? _base1.onReleaseOutside() : void 0;
+      if (typeof (_base1 = this.props).onReleaseOutside === "function") {
+        _base1.onReleaseOutside();
+      }
     }
   }
 });
 
 module.exports = Pressable;
 
-},{"eventlistener":2}],2:[function(_dereq_,module,exports){
+},{"eventlistener":2,"xtend":3}],2:[function(_dereq_,module,exports){
 (function(root,factory){
     if (typeof define === 'function' && define.amd) {
         define(factory);
@@ -181,6 +178,25 @@ module.exports = Pressable;
 		remove: wrap('removeEventListener', 'detachEvent')
 	};
 }));
+},{}],3:[function(_dereq_,module,exports){
+module.exports = extend
+
+function extend() {
+    var target = {}
+
+    for (var i = 0; i < arguments.length; i++) {
+        var source = arguments[i]
+
+        for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+                target[key] = source[key]
+            }
+        }
+    }
+
+    return target
+}
+
 },{}]},{},[1])
 (1)
 });
