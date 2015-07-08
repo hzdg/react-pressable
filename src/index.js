@@ -14,7 +14,7 @@ function createFrom(componentClass) {
   const PressableFactory = (React.createFactory || id)(Pressable);
   const dn = componentClass.type.displayName;
   const wrappedDisplayName = dn ? `${ dn.charAt(0).toUpperCase() }${ dn.slice(1) }` : 'Component';
-  React.createClass({
+  return React.createClass({
     displayName: `Pressable${ wrappedDisplayName }`,
     render() {
       const newProps = Object.assign({}, this.props, {component: componentClass});
